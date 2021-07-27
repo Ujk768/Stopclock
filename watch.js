@@ -2,6 +2,8 @@
     var seconds=00;
     var tens=00;
     //click effects on buttons
+
+    
     for(var i=0;i<document.querySelectorAll("button").length;i++){
         document.querySelectorAll("button")[i].addEventListener("click",function(){
             var buttonPress = this.innerHTML;
@@ -12,25 +14,27 @@
         });
     }
     
-    var startButton=document.querySelector(".start");
     
-    var stopButton=document.querySelector(".stop");
+    
+    
+    var startButton=document.querySelector(".start");
     
     var resetButton=document.querySelector(".reset");
     var interval;
-    var stop=1;
-    startButton.onclick=function(){
+    var started=false;
+startButton.onclick=function(){
+    if(!started){
+        interval=setInterval(startTimer,100);
+        started=true;
+        startButton.innerHTML="stop";
+    }else{
+        started=false;
         clearInterval(interval);
+        startButton.innerHTML="start";
         
-            interval=setInterval(startTimer,10);
-        
-        
-    };
-    
-    stopButton.onclick=function(){
-        stop=0;
-        clearInterval(interval);
-    };
+    }
+}
+ 
     
     resetButton.onclick=function(){
         clearInterval(interval);
@@ -58,6 +62,14 @@
             document.getElementById("seconds").innerHTML=seconds;
         }
     }
+
+
+
+
+    
+
+
+
 
 
 
